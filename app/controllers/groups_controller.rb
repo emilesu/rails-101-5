@@ -20,9 +20,19 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
 
     if @group.save
-      redirect_to groups_path
+      redirect_to groups_path, notice: "发布成功……"
     else
       render :new
+    end
+  end
+
+  def update
+    @group = Group.find(params[:id])
+
+    if @group.update(group_params)
+      redirect_to groups_path, notice: "更新成功……"
+    else
+      render :edit
     end
   end
 
